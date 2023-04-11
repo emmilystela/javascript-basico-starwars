@@ -1,0 +1,204 @@
+*Operadores de comparação*
+
+    Igual (==)
+    Retorna verdadeiro se os valores comparados forem iguais.
+    1=='1' //true
+
+    Não igual (!=)
+    Retorna verdadeiro se os valores comparados não forem iguais. Esse operador também pode ser chamado de diferente de.
+    4!=1 //true
+
+    Igual estrito (===)
+    Esse operador é mais severo, só retorna verdadeiro se o valor e o tipo comparados forem iguais.
+    3==='3' //false
+    3===3 //true
+
+    Não igual estrito (!==)
+    Não se engane, esse operador vai retornar verdadeiro se os valores e ou os tipos forem diferentes
+    3!=='3' //true
+    3!==3 //false
+    3!==4 //true
+
+    Maior que (>)
+    Compara se o operador da esquerda é maior que o da direita. Caso seja retorna verdadeiro
+    1>2 //false
+    5>3 //true
+    4>'1' //true
+
+    Maior ou igual que (>=)
+    Compara se o operador da esquerda é maior ou igual ao da direita. Caso seja retorna verdadeiro
+    1>=2 //false
+    5>=3 //true
+    4>='1' //true
+    2>=2 // true
+
+    Menor que (<)
+    Compara se o operador da esquerda é menor que o da direita. Caso seja retorna verdadeiro
+
+    1<2 //true
+    5<3 //false
+    4<'1' //false    
+
+    Menor ou igual que (<=)
+    Compara se o operador da esquerda é menor ou igual ao da direita. Caso seja retorna verdadeiro
+
+    1<=2 //true
+    5<=3 //false
+    4<='1' //false
+    2<=2 // true
+
+*variaveis*
+
+    // var nome = 'Mestre Yoda'
+    // var idade = 100
+    // var jedi = true
+
+    // console.log(typeof nome)
+    // console.log(typeof idade)
+    // console.log(typeof jedi)
+
+*funções*
+      
+    function soma(n1, n2) {
+        console.log(n1 + n2)
+    }
+
+*controle de fluxos (BDD)*
+
+    Funcionam com a palavra reservada IF pra verificar uma condição que fica dentro de () e dentro dele coloca um 
+    operador de decisão
+
+    CENARIO 1: Saque com sucesso 
+        DADO que meu saldo é de 1000 reais 
+        QUANDO faço um saque de 500 reais 
+        ENTÃO o valor do saque deve deduzido do meu saldo
+
+        CÓDIGO: 
+                var saldo = 1000
+
+                function saque (valor) {
+
+                        saldo = saldo - valor
+                }
+
+                     saque(701)
+                    console.log(saldo)
+
+    CENARIO 2: 
+        DADO que meu saldo é de 1000 reais 
+        QUANDO faço um saque de 1001 reais 
+        ENTÃO não deve deduzir do meu saldo 
+        E deve mostrar uma mensagem de alerta informando que o valor é superior ao saldo
+
+        CÓDIGO:
+                var saldo = 1000
+                function saque (valor) {
+                    if (valor > saldo) {
+                        console.log('Valor do saque superior ao saldo')
+                    } else {
+                        saldo = saldo - valor
+                    }
+                }
+
+                        saque(701)
+                        console.log(saldo)
+
+    CENARIO 3: Saque com valor máximo 
+        DADO que meu saldo é de 1000 reais 
+        E o valor maximo por operação é de 700 reais
+        QUANDO faço um saque no valor de 701 reais 
+        ENTÃO não deve deduzir do meu saldo 
+        E deve mostrar uam mensagem de alerta informando que o valor é superior ao máximo permitido por operação
+
+        CÓDIGO:
+                 var saldo = 1000
+
+                function saque (valor) {
+                    
+                    if (valor > saldo) {
+                        console.log('Valor do saque superios ao saldo')
+                    } else if (valor > 700){
+                        console.log('Valor do saque é superior ao maximo permitido por operação')
+                    } else {
+                        saldo = saldo - valor
+                    }
+                }
+
+                saque(701)
+                console.log(saldo)
+
+*arrays*
+    Um objeto onde vc consegue armazenar um conjuto de dados 
+
+    CÓDIGO: 
+           var personagens = ['Mestre Yoda', 'Luke', 'Princesa Leia', 'Darth Vader']
+    
+                personagens.push('C3pO') //adiciona mais um personagem a lista de array
+
+                personagens = personagens.filter(function(p){
+                    return p !== 'Darth Vader' //função que mostra todos os personagens que sejam diferentes a 'Darth Vader'
+                })
+                
+                personagens = personagens.filter(function(p){
+                    return p === 'Mestre Yoda' //função que mostra todos os personagens que sejam iguais a 'Mestre Yoda'
+                })
+
+                console.log(personagens)
+    
+*controles de repetição (LOOPS)*
+    
+    - forEach
+    - forIn
+    - for
+
+    CÓDIGO 
+        var personagens = ['Mestre Yoda', 'Luke', 'Princesa Leia', 'Darth Vader']
+
+            personagens.forEach(function(p){
+                console.log(p)
+            })
+
+             for (var i in personagens) { 
+                console.log(personagens[i])
+            }
+
+             for (var i= 0; i <= 10; i++){
+                console.log(i)
+                //código vai ser executado até a condição retornar false
+            }
+
+*objetos*
+    Superváriaveis; Uma forma pratica pra armazernar informações de forma flexiveis e agrupada onde vc consegue ter uma coleção de valores agrupadas por nome.
+
+    CÓDIGO:
+        var yoda = {
+        nome:'Mestre Yoda',
+        idade: 100,
+        jedi: true, 
+        mostraIdade: function() {
+            console.log(`A idade do ${this.nome} é ${this.idade} anos.`)
+        }
+    }
+
+        console.log(yoda)
+        yoda.mostraIdade()
+
+*constantes*
+
+*VUE.JS*
+    *v-for*
+        Para renderizar uma lista de elementos com base nos dados de um Array.
+
+        CÓDIGO:
+            <div class="characters">
+                    <div class="item" v-for="item of characters">
+                        <img :src="item.avatar" :alt="item.nome">
+                        <p>{{item.nome}}</p>
+                    </div>
+            </div>
+
+    *methods* 
+        Recurso do vue js pra implementar funções.
+
+    *v-model*
+        Para criar interligações de mão dupla (two-way binding) entre os dados e elementos input, textarea e select de formulários.
